@@ -8,21 +8,22 @@ public class Triangle : MonoBehaviour
     private CinemachineImpulseSource impulseSource;
     [SerializeField] private ScreenShakeProfile profile;
 
-    [SerializeField] private AudioClip _clip;
-    private AudioSource _source;
+    [SerializeField] private AudioClip[] _damageSoundClip;
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
-        _source = GetComponent<AudioSource>();
     }
     public void TakeDamage(int damage)
     {
         //CameraShakeManager.instance.CameraShake(impulseSource);
         CameraShakeManager.instance.ScreenShakeFromProfile(profile, impulseSource);
         health -= damage;
+
         //play soundFx
-        _source.clip = _clip;
-        _source.Play();
+        //SoundFXManager.Instance.PlaySoundFXClip(_damageSoundClip, transform, 1f);
+
+        //select random sound from multi_sound
+        SoundFXManager.Instance.PlayRandomSoundFXClip(_damageSoundClip,transform,1f);
 
         if (health <= 0)
         {
