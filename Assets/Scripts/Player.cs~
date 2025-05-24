@@ -1,0 +1,40 @@
+using UnityEngine;
+
+public class Player : MonoBehaviour
+{
+    private float _horizontalInput;
+    private float _moveSpeed = 9f;
+    //private bool _isFacingRight = false;
+
+    private Rigidbody2D _rb;
+
+    private void Start()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+    }
+    private void Update()
+    {
+        _horizontalInput = Input.GetAxis("Horizontal");
+    }
+
+    private void FixedUpdate()  //fixedUpdate for smooth movement of the background
+    {
+        _rb.linearVelocity = new Vector2(_horizontalInput * _moveSpeed, _rb.linearVelocity.y);
+    }
+
+    /*private void FlipSprite()
+    {
+        _isFacingRight = !_isFacingRight;
+        Vector3 ls = transform.localScale;
+        ls.x *= -1f;
+        transform.localScale = ls;
+    }
+    */
+
+}
+
+
+
+//Player Movement using new Input System
+
+using UnityEngine.InputSystem
