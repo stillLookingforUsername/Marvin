@@ -97,7 +97,16 @@ public class PlayerController : MonoBehaviour
     private int _noOfJumps = 1;
     private int lastWallJumpDirection;
 
+    public CoinManager cm;
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            Destroy(other.gameObject);
+            cm.coinCnt++;
+        }
+    }
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
