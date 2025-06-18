@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Dummy
   - Coin
+  - Key
   layers:
   - Default
   - TransparentFX
