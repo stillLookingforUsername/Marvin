@@ -5,27 +5,48 @@ using UnityEngine.SceneManagement;
 
 public class CodeCheckPanel : MonoBehaviour
 {
-    public TMP_InputField codeInput;
-    public Button submitButotn;
+    public TMP_Text codeDisplay;
     public GameObject codePanel;
 
-    private string correctCode = "1122";
+    private string _correctCode = "1122";
+    private string _currentCode = "";
 
-    private void Start()
+
+    public void AddDigit(string digit)
     {
-        submitButotn.onClick.AddListener(CodeCheck);
+        if (_currentCode.Length < 4)
+        {
+            _currentCode += digit;
+            UpdateDisplay();
+        }
+    }
+    public void SubmitCode()
+    {
+        CodeCheck();
+    }
+
+    public void ClearInput()
+    {
+        _currentCode = "";
+        UpdateDisplay();
+    }
+
+    private void UpdateDisplay()
+    {
+        codeDisplay.text = _currentCode.PadRight(4, '_'); // e.g. "12_"
     }
 
     private void CodeCheck()
     {
-        if (codeInput.text == correctCode)
+        if (codeDisplay.text == _correctCode)
         {
             Debug.Log("Correct Code");
-            // transition to next level
-            SceneManager.LoadScene(0);
 
             //deactivate the panel
             codePanel.SetActive(false);
+
+            // transition to next level
+            SceneManager.LoadScene(0);
 
         }
         else
@@ -33,7 +54,7 @@ public class CodeCheckPanel : MonoBehaviour
             Debug.Log("Wrong Code");
 
             //clear input
-            codeInput.text = "";
+            codeDisplay.text = "";
         }
     }
 
