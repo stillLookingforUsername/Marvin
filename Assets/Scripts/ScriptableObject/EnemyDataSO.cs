@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEnemyData", menuName = "EnemyData")]
-public class EnemyData : ScriptableObject
+public class EnemyDataSO : ScriptableObject
 {
     public float chaseSpeed;
     public float jumpForce;

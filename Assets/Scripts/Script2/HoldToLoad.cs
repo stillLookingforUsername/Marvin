@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class HoldToLoad : MonoBehaviour
 {
-    public LoadLevelCanvas data;
+    public LoadLevelCanvasSO data;
     public Image fillCircle;
 
     private float _holdTimer = 0;

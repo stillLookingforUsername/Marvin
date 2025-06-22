@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour 
 {
-    public EnemyData data;
+    public EnemyDataSO data;
     public Transform player;
     /*
     public float chaseSpeed = 2f;
