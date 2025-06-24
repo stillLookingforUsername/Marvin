@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Grenade : MonoBehaviour
@@ -38,9 +39,15 @@ public class Grenade : MonoBehaviour
 
             //spawn explosion effects
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
-            src.Play();
-            Destroy(gameObject);
+            StartCoroutine(PlayForTime(3f));
         }
+    }
+    private IEnumerator PlayForTime(float time)
+    {
+        src.Play();
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+        src.Stop();
     }
 
     private void OnDrawGizmos()
