@@ -1,9 +1,9 @@
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     [Header("References")]
     public PlayerMovementStats MoveStats;
     [SerializeField] private Collider2D _feetColl;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _isFacingRight = true;
-        _rb = GetComponent<Rigidbody2D>();  
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -69,12 +69,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            Move(MoveStats.AirAcceleration,MoveStats.AirDeceleration,InputManager.Movement);
+            Move(MoveStats.AirAcceleration, MoveStats.AirDeceleration, InputManager.Movement);
         }
     }
 
     #region Movement
-    private void Move(float acceleration,float deceleration,Vector2 moveInput)
+    private void Move(float acceleration, float deceleration, Vector2 moveInput)
     {
         if (moveInput != Vector2.zero)
         {
@@ -340,7 +340,7 @@ public class PlayerMovement : MonoBehaviour
             }
             Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2 * headWidth, boxCastOrigin.y), Vector2.up * MoveStats.HeadDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector2(boxCastOrigin.x + (boxCastSize.x / 2) * headWidth, boxCastOrigin.y), Vector2.up * MoveStats.HeadDetectionRayLength, rayColor);
-            Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2 * headWidth, boxCastOrigin.y + MoveStats.HeadDetectionRayLength),Vector2.right * boxCastSize.x * headWidth, rayColor);
+            Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2 * headWidth, boxCastOrigin.y + MoveStats.HeadDetectionRayLength), Vector2.right * boxCastSize.x * headWidth, rayColor);
         }
 
 
@@ -353,7 +353,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 boxCastOrigin = new Vector2(_feetColl.bounds.center.x, _feetColl.bounds.min.y);
         Vector2 boxCastSize = new Vector2(_feetColl.bounds.size.x, MoveStats.GroundDetectionRayLength);
 
-        _groundHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize,0f, Vector2.down,MoveStats.GroundDetectionRayLength,MoveStats.GroundLayer);
+        _groundHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, Vector2.down, MoveStats.GroundDetectionRayLength, MoveStats.GroundLayer);
 
         if (_groundHit.collider != null)
         {
@@ -379,7 +379,7 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y), Vector2.down * MoveStats.GroundDetectionRayLength, rayColor);
             Debug.DrawRay(new Vector2(boxCastOrigin.x + boxCastSize.x / 2, boxCastOrigin.y), Vector2.down * MoveStats.GroundDetectionRayLength, rayColor);
-            Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y - MoveStats.GroundDetectionRayLength),Vector2.right * boxCastSize.x, rayColor);
+            Debug.DrawRay(new Vector2(boxCastOrigin.x - boxCastSize.x / 2, boxCastOrigin.y - MoveStats.GroundDetectionRayLength), Vector2.right * boxCastSize.x, rayColor);
         }
 
         #endregion
@@ -392,6 +392,69 @@ public class PlayerMovement : MonoBehaviour
 
     #endregion
 
+    #region Draw Jump Arc
+
+    private void DrawJumpArc(float moveSpeed, Color gizmosColor)
+    {
+        Vector2 startPosition = new Vector2(_feetColl.bounds.center.x, _feetColl.bounds.min.y);
+        Vector2 previousPosition = startPosition;
+        float speed = 0f;
+
+        if (MoveStats.DrawRight)
+        {
+            speed = moveSpeed;
+        }
+        else
+        {
+            speed = -moveSpeed;
+        }
+        Vector2 velocity = new Vector2(speed, MoveStats.InitialJumpVelocity);
+        Gizmos.color = gizmosColor;
+
+        float timeStep = 2 * MoveStats.TimeTillJumpApex / MoveStats.ArcResolution;  //time Step for the Simulation
+        //float totalTime = (2 * MoveStats.TimeTillJumpApex) + MoveStatx.ApexHangTime;
+
+        for (int i = 0; i < MoveStats.VisualizationSteps; i++)
+        {
+            float simulationTime = i * timeStep;
+            Vector2 displacement;
+            Vector2 drawPoint;
+
+            if (simulationTime < MoveStats.TimeTillJumpApex)    //Ascending
+            {
+                displacement = velocity * simulationTime + 0.5f * new Vector2(0, MoveStats.Gravity) * simulationTime * simulationTime;
+            }
+            else if (simulationTime < MoveStats.TimeTillJumpApex + MoveStats.ApexHangTime)  //Apex hang time
+            {
+                float apexTime = simulationTime - MoveStats.TimeTillJumpApex;
+                displacement = velocity * MoveStats.TimeTillJumpApex + 0.5f * new Vector2(0, MoveStats.Gravity) * MoveStats.TimeTillJumpApex * MoveStats.TimeTillJumpApex;
+                displacement += new Vector2(speed, 0) * apexTime;   //no vertical movement during hang time
+            }
+            else //Descending
+            {
+                float descendTime = simulationTime - (MoveStats.TimeTillJumpApex + MoveStats.ApexHangTime);
+                displacement = velocity * MoveStats.TimeTillJumpApex + 0.5f * new Vector2(0, MoveStats.Gravity) * MoveStats.TimeTillJumpApex * MoveStats.TimeTillJumpApex;
+                displacement += new Vector2(speed, 0) * MoveStats.ApexHangTime;
+                displacement += new Vector2(speed, 0) * descendTime + 0.5f * new Vector2(0, MoveStats.Gravity) * descendTime * descendTime;
+            }
+
+            drawPoint = startPosition + displacement;
+
+            if (MoveStats.StopOnCollision)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(previousPosition, drawPoint - previousPosition, Vector2.Distance(previousPosition, drawPoint), MoveStats.GroundLayer);
+                if (hit.collider != null)
+                {
+                    Gizmos.DrawLine(previousPosition, hit.point);
+                    break;
+                }
+            }
+            Gizmos.DrawLine(previousPosition, drawPoint);
+            previousPosition = drawPoint;
+        }
+    }
+
+    #endregion
 
     #region Timers
 
@@ -410,6 +473,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
     #endregion
+
+    private void OnDrawGizmos()
+    {
+        if (MoveStats.ShowWalkJumpArc)
+        {
+            DrawJumpArc(MoveStats.MaxWalkSpeed,Color.white);
+        }
+        if (MoveStats.ShowRunJumpArc)
+        {
+            DrawJumpArc(MoveStats.MaxRunSpeed, Color.red);
+        }
+
+    }
 }
 
 

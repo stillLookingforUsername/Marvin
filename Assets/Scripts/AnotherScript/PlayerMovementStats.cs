@@ -52,7 +52,7 @@ public class PlayerMovementStats : ScriptableObject
     public bool ShowWalkJumpArc = false;
     public bool ShowRunJumpArc = false;
     public bool StopOnCollision = true;
-    public bool DrayRight = true;
+    public bool DrawRight = true;
     [Range(5, 100)] public int ArcResolution = 20;
     [Range(0, 100)] public int VisualizationSteps = 90;
 
