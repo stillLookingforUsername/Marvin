@@ -46,7 +46,7 @@ public class CodeCheckPanel : MonoBehaviour
             codePanel.SetActive(false);
 
             // transition to next level
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
 
         }
         else

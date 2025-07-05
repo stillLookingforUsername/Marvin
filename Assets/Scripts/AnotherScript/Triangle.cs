@@ -23,7 +23,7 @@ public class Triangle : MonoBehaviour
         //SoundFXManager.Instance.PlaySoundFXClip(_damageSoundClip, transform, 1f);
 
         //select random sound from multi_sound
-        SoundFXManager.Instance.PlayRandomSoundFXClip(_damageSoundClip,transform,1f);
+        //SoundFXManager.Instance.PlayRandomSoundFXClip(_damageSoundClip,transform,1f);
 
         if (health <= 0)
         {

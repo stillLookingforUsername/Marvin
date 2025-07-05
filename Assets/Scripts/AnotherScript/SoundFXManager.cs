@@ -1,62 +1,36 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-//able to call it from anywhere very easyly it exist as global and it has only one instance of it 
 public class SoundFXManager : MonoBehaviour
 {
     public static SoundFXManager Instance;
-    [SerializeField] private AudioSource _soundFXObj;
+    [SerializeField] private AudioSource soundFXObject;
 
-    public void Awake()
+    private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
-        else
-            return;
+        }
     }
 
-
-    public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform,float intensity)
+    public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
-        //spawn object
-        AudioSource audioSource = Instantiate(_soundFXObj, spawnTransform.position, Quaternion.identity);
-        //assign the audio clip
+        //spawn in gameObject
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity); //ref 122
+
+        //assign the audioClip
         audioSource.clip = audioClip;
 
         //assign volume
-        audioSource.volume = intensity;
+        audioSource.volume = volume;
 
-        //play the sound
+        //play Sound
         audioSource.Play();
 
-        //get the length of the sound FX clip
+        //get length of the audio clip Fx
         float clipLength = audioSource.clip.length;
 
-        //finally destroy this gameObject after certain amount of time
-        Destroy(audioSource.gameObject, clipLength);
-    }
-
-    public void PlayRandomSoundFXClip(AudioClip[] audioClip, Transform spawnTransform, float intensity)
-    {
-        //assign random index
-        int rand = Random.Range(0, audioClip.Length);
-
-        //spawn object
-        AudioSource audioSource = Instantiate(_soundFXObj, spawnTransform.position, Quaternion.identity);
-
-        //assign the audio clip
-        audioSource.clip = audioClip[rand];
-
-        //assign volume
-        audioSource.volume = intensity;
-
-        //play the sound
-        audioSource.Play();
-
-        //get the length of the sound FX clip
-        float clipLength = audioSource.clip.length;
-
-        //finally destroy this gameObject after certain amount of time
+        //destroy the clip after it is done playing
         Destroy(audioSource.gameObject, clipLength);
     }
 }

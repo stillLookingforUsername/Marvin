@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private Collider2D _bodyColl;
 
     private Rigidbody2D _rb;
-
+    //jump audio
+    public AudioClip audioClip;
     //movements vars
     public float HorizontalVelocity { get; private set; }
     private bool _isFacingRight;
@@ -138,6 +139,17 @@ public class PlayerMovement : MonoBehaviour {
 
             _rb.linearVelocity = new Vector2(HorizontalVelocity, VerticalVelocity);
     }
+    #region Coin collection
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Coin"))
+        {
+            GameManager.instance.AddCoin();
+            Destroy(collision.gameObject);
+        }
+    }
+    #endregion
 
     #region Movement
     private void Move(float acceleration, float deceleration, Vector2 moveInput)
@@ -332,6 +344,7 @@ public class PlayerMovement : MonoBehaviour {
         _jumpBufferTimer = 0f;
         _numberOfJumpsUsed += numbersOfJumpsUsed;
         VerticalVelocity = MoveStats.InitialJumpVelocity;
+        SoundFXManager.Instance.PlaySoundFXClip(audioClip, transform, 1f);
     }
     private void Jump()
     {

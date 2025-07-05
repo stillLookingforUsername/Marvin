@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
     private int _noOfJumps = 1;
     private int lastWallJumpDirection;
 
-    public CoinManager cm;
+    public GameManager cm;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

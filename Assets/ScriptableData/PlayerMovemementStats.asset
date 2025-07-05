@@ -20,7 +20,7 @@ MonoBehaviour:
   AirDeceleration: 5
   WallJumpMoveAcceleration: 5
   WallJumpMoveDeceleration: 5
-  MaxRunSpeed: 20
+  MaxRunSpeed: 8.1
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -29,16 +29,16 @@ MonoBehaviour:
   HeadWidth: 0.75
   WallDetectionRayLength: 0.125
   WallDetectionRayHeightMultiplier: 0.9
-  JumpHeight: 6.5
-  JumpHeightCompensationFactor: 1.054
-  TimeTillJumpApex: 0.35
-  GravityOnReleaseMultiplier: 2
-  MaxFallSpeed: 13.6
+  JumpHeight: 8.44
+  JumpHeightCompensationFactor: 1
+  TimeTillJumpApex: 1.05
+  GravityOnReleaseMultiplier: 2.34
+  MaxFallSpeed: 11.2
   NumberOfJumpsAllowed: 2
   ResetJumpsOnWallSlide: 1
-  TimeForUpwardCancel: 0.027
-  ApexThreshold: 0.97
-  ApexHangTime: 0.075
+  TimeForUpwardCancel: 0.065
+  ApexThreshold: 0.766
+  ApexHangTime: 0.102
   JumpBufferTime: 0.125
   JumpCoyoteTime: 0.1
   WallSlideSpeed: 5
