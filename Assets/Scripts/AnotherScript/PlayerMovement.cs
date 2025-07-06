@@ -141,6 +141,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     #region Coin collection
 
+/*
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Coin"))
@@ -149,6 +150,7 @@ public class PlayerMovement : MonoBehaviour {
             Destroy(collision.gameObject);
         }
     }
+    */
     #endregion
 
     #region Movement

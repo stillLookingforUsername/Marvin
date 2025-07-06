@@ -1,10 +1,11 @@
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public AudioSource coinCollectSound;
+    //public AudioSource coinCollectSound;
 
     private void Awake()
     {
@@ -18,19 +19,47 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public TextMeshProUGUI coinText;
-    public int coinCnt;
+
+    [SerializeField] private GameObject _menuCanvas;
+    [SerializeField] private KeyCode _toggleKey = KeyCode.Escape;
+
+    //public TextMeshProUGUI coinText;
+    //public int coinCnt;
 
 
     private void Update()
     {
-        coinText.text = ": " + coinCnt.ToString();
+        /*
+        if (coinText != null)
+        {
+            coinText.text = ": " + coinCnt.ToString();
+        }
+        else
+        {
+            Debug.Log("coinText is not assigned");
+        }
+        */
+        if (Input.GetKeyDown(_toggleKey))
+        {
+            if (_menuCanvas != null)
+            {
+                bool isActive = _menuCanvas.activeSelf;
+                _menuCanvas.SetActive(!isActive);
+                Time.timeScale = _menuCanvas.activeSelf ? 0f : 1f;
+            }
+            else
+            {
+                Debug.Log("Menu Canvas is not assigned");
+            }
+        }
     }
 
+/*
     public void AddCoin()
     {
         coinCnt++;
         coinCollectSound.Play();
     }
+    */
 
 }
