@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    //public AudioSource coinCollectSound;
 
     private void Awake()
     {
@@ -23,22 +22,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _menuCanvas;
     [SerializeField] private KeyCode _toggleKey = KeyCode.Escape;
 
-    //public TextMeshProUGUI coinText;
-    //public int coinCnt;
 
 
     private void Update()
     {
-        /*
-        if (coinText != null)
-        {
-            coinText.text = ": " + coinCnt.ToString();
-        }
-        else
-        {
-            Debug.Log("coinText is not assigned");
-        }
-        */
         if (Input.GetKeyDown(_toggleKey))
         {
             if (_menuCanvas != null)
@@ -53,13 +40,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-/*
-    public void AddCoin()
-    {
-        coinCnt++;
-        coinCollectSound.Play();
-    }
-    */
-
 }

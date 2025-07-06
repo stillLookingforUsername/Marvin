@@ -139,19 +139,6 @@ public class PlayerMovement : MonoBehaviour {
 
             _rb.linearVelocity = new Vector2(HorizontalVelocity, VerticalVelocity);
     }
-    #region Coin collection
-
-/*
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Coin"))
-        {
-            GameManager.instance.AddCoin();
-            Destroy(collision.gameObject);
-        }
-    }
-    */
-    #endregion
 
     #region Movement
     private void Move(float acceleration, float deceleration, Vector2 moveInput)
