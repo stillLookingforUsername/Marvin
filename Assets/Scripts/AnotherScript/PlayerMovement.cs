@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private Collider2D _feetColl;
     [SerializeField] private Collider2D _bodyColl;
 
+
+    private Animator _animator;
     private Rigidbody2D _rb;
     //jump audio
     public AudioClip audioClip;
@@ -83,6 +85,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         _isFacingRight = true;
         _rb = GetComponent<Rigidbody2D>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -94,7 +97,39 @@ public class PlayerMovement : MonoBehaviour {
         DashCheck();
 
         WallSlideCheck();
+        UpdateAnimationStates();
     }
+
+    #region Animation
+
+    private void UpdateAnimationStates()
+    {
+        float yVel = VerticalVelocity;
+
+        bool isMovingHorizontally = Mathf.Abs(HorizontalVelocity) > 0.1f;
+        bool isRising = yVel > 0.1f;
+        bool isFalling = yVel < -0.1f;
+
+        // Wall slide takes priority over other states
+        if (_isWallSliding || _isWallSlideFalling)
+        {
+            _animator.SetBool("isWallSliding", true);
+            _animator.SetBool("isRunning", false);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isFalling", false);
+        }
+        else
+        {
+            _animator.SetBool("isWallSliding", false);
+            _animator.SetBool("isRunning", isMovingHorizontally && _isGrounded);
+            _animator.SetBool("isJumping", !_isGrounded && isRising);
+            _animator.SetBool("isFalling", !_isGrounded && isFalling);
+        }
+        _animator.SetBool("isGrounded", _isGrounded);
+    }
+
+
+    #endregion
 
     private void FixedUpdate()
     {
