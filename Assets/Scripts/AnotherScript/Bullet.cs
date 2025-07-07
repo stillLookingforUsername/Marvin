@@ -36,11 +36,17 @@ public class Bullet : MonoBehaviour
 
     [Header("Normal Bullet Stats")]
     [SerializeField, Range(5f, 20f)] private float _normalBulletSpeed = 15f;
+    [SerializeField, Range(1f, 20f)] private float _normalBulletDamage = 1f;
+    
+    
 
     [Header("Physics Bullet Stats")]
     [SerializeField, Range(5f, 20f)] private float _physicsBulletSpeed = 5f;
     [SerializeField, Range(0.2f, 10f)] private float _physicsBulletGravity = 1f;
+    [SerializeField, Range(1f, 20f)] private float _physicsBulletDamage = 2f;
+
     private Rigidbody2D _rb;
+    private float damage;
 
     public enum BulletType
     {
@@ -70,10 +76,12 @@ public class Bullet : MonoBehaviour
         if (bulletType == BulletType.NormalType)
         {
             SetVelocity();
+            damage = _normalBulletDamage;
         }
         else if (bulletType == BulletType.PhysicsType)
         {
             SetPhysicsVelocity();
+            damage = _physicsBulletDamage;
         }
     }
 
@@ -88,10 +96,15 @@ public class Bullet : MonoBehaviour
 
             //ScreenShake
 
-            //Damage Enemy
+            //Damage Enemy  -- refer 123
+            IDamageable iDamageable = collision.gameObject.GetComponent<IDamageable>();
+            if (iDamageable != null)
+            {
+                iDamageable.Damage(damage);
+            }
 
             //Destroy GameObject
-            Destroy(gameObject);
+                Destroy(gameObject);
 
             //If you want to destroy the object that the bullet hits
             //Destroy(collision.gameObject);

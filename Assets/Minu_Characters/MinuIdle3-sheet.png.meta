@@ -1,25 +1,13 @@
 fileFormatVersion: 2
-guid: 75497903348c2f64d827ca772453d33a
+guid: 5955f970ec6e0b9409dd3f4d3dac5bc2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3014870602215937048
-    second: MinuRun_0
+      213: 4480661276225955551
+    second: MinuIdle3-sheet_0
   - first:
-      213: -5310901990696981728
-    second: MinuRun_1
-  - first:
-      213: -1632382468075052382
-    second: MinuRun_2
-  - first:
-      213: 4608659998045641909
-    second: MinuRun_3
-  - first:
-      213: -7822438275613039124
-    second: MinuRun_4
-  - first:
-      213: 5140232865924264229
-    second: MinuRun_5
+      213: 7626719119231863049
+    second: MinuIdle3-sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +54,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 480
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +78,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -141,133 +129,155 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MinuRun_0
+      name: MinuIdle3-sheet_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 541
-        width: 248
-        height: 418
+        x: 50
+        y: 519
+        width: 312
+        height: 437
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 81459d8d6d8f6d920800000000000000
-      internalID: 3014870602215937048
+      spriteID: fd6eb40f0b18e2e30800000000000000
+      internalID: 4480661276225955551
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MinuRun_1
+      name: MinuIdle3-sheet_1
       rect:
         serializedVersion: 2
-        x: 361
-        y: 541
-        width: 262
-        height: 418
+        x: 109
+        y: 516
+        width: 226
+        height: 417
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 02b679f17c2eb46b0800000000000000
-      internalID: -5310901990696981728
+      spriteID: 909ce7f71ac87d960800000000000000
+      internalID: 7626719119231863049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MinuRun_2
+      name: MinuIdle3-sheet_2
       rect:
         serializedVersion: 2
-        x: 688
-        y: 541
-        width: 272
-        height: 418
+        x: 378
+        y: 508
+        width: 242
+        height: 432
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2a2afc44bcc9859e0800000000000000
-      internalID: -1632382468075052382
+      spriteID: 7e3588411a5e4f64eaa8827eb3e4b269
+      internalID: 626856567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MinuRun_3
+      name: MinuIdle3-sheet_3
       rect:
         serializedVersion: 2
-        x: 78
-        y: 69
-        width: 228
-        height: 385
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5bc101ab9df35ff30800000000000000
-      internalID: 4608659998045641909
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MinuRun_4
-      rect:
-        serializedVersion: 2
-        x: 407
-        y: 70
-        width: 227
-        height: 384
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ce56aa855dd117390800000000000000
-      internalID: -7822438275613039124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MinuRun_5
-      rect:
-        serializedVersion: 2
-        x: 722
-        y: 71
+        x: 660
+        y: 517
         width: 239
-        height: 416
+        height: 421
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5213434be86c55740800000000000000
-      internalID: 5140232865924264229
+      spriteID: 9c2b1faf98244b34386bf96cca397533
+      internalID: 1770484847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinuIdle3-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 55
+        width: 238
+        height: 430
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5740f34211f409047b4fb763b53d6a32
+      internalID: -371402832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinuIdle3-sheet_5
+      rect:
+        serializedVersion: 2
+        x: 372
+        y: 61
+        width: 254
+        height: 427
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6b6a8a9fa4960d45b43072dd6f5fad1
+      internalID: -799458916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MinuIdle3-sheet_6
+      rect:
+        serializedVersion: 2
+        x: 658
+        y: 68
+        width: 241
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c3fc25dca0c6146842908d371cde16
+      internalID: 999514232
       vertices: []
       indices: 
       edges: []
@@ -276,7 +286,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e844b3e86013539428d1512394199c1c
+    spriteID: 835ce48db539cd64d895b9b1cd90f6ce
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +296,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MinuRun_0: 3014870602215937048
-      MinuRun_1: -5310901990696981728
-      MinuRun_2: -1632382468075052382
-      MinuRun_3: 4608659998045641909
-      MinuRun_4: -7822438275613039124
-      MinuRun_5: 5140232865924264229
+      MinuIdle3-sheet_0: 4480661276225955551
+      MinuIdle3-sheet_1: 7626719119231863049
+      MinuIdle3-sheet_2: 626856567
+      MinuIdle3-sheet_3: 1770484847
+      MinuIdle3-sheet_4: -371402832
+      MinuIdle3-sheet_5: -799458916
+      MinuIdle3-sheet_6: 999514232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

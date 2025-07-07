@@ -1,25 +1,10 @@
 fileFormatVersion: 2
-guid: 75497903348c2f64d827ca772453d33a
+guid: 1d3f0f815e1488544ae87569b82dedea
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3014870602215937048
-    second: MinuRun_0
-  - first:
-      213: -5310901990696981728
-    second: MinuRun_1
-  - first:
-      213: -1632382468075052382
-    second: MinuRun_2
-  - first:
-      213: 4608659998045641909
-    second: MinuRun_3
-  - first:
-      213: -7822438275613039124
-    second: MinuRun_4
-  - first:
-      213: 5140232865924264229
-    second: MinuRun_5
+      213: 874343242196921964
+    second: Bullets_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 450
+  spritePixelsToUnits: 550
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -141,133 +126,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MinuRun_0
+      name: Bullets_0
       rect:
         serializedVersion: 2
-        x: 47
-        y: 541
-        width: 248
-        height: 418
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 81459d8d6d8f6d920800000000000000
-      internalID: 3014870602215937048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MinuRun_1
-      rect:
-        serializedVersion: 2
-        x: 361
-        y: 541
-        width: 262
-        height: 418
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02b679f17c2eb46b0800000000000000
-      internalID: -5310901990696981728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MinuRun_2
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 541
+        x: 178
+        y: 620
         width: 272
-        height: 418
+        height: 172
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2a2afc44bcc9859e0800000000000000
-      internalID: -1632382468075052382
+      spriteID: c6e29eadb8a422c00800000000000000
+      internalID: 874343242196921964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MinuRun_3
+      name: Bullets_1
       rect:
         serializedVersion: 2
-        x: 78
-        y: 69
-        width: 228
-        height: 385
+        x: 599
+        y: 623
+        width: 244
+        height: 167
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5bc101ab9df35ff30800000000000000
-      internalID: 4608659998045641909
+      spriteID: a73ec8ebabeee5d42855201f92117820
+      internalID: 2107129931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MinuRun_4
+      name: Bullets_2
       rect:
         serializedVersion: 2
-        x: 407
-        y: 70
-        width: 227
-        height: 384
+        x: 177
+        y: 210
+        width: 270
+        height: 174
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ce56aa855dd117390800000000000000
-      internalID: -7822438275613039124
+      spriteID: 870c6871de2182a488567574c330c35d
+      internalID: -1382077799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MinuRun_5
+      name: Bullets_3
       rect:
         serializedVersion: 2
-        x: 722
-        y: 71
-        width: 239
-        height: 416
+        x: 596
+        y: 210
+        width: 251
+        height: 176
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5213434be86c55740800000000000000
-      internalID: 5140232865924264229
+      spriteID: f87df5b4e32f72d478023ddf4dd74f64
+      internalID: 1001068434
       vertices: []
       indices: 
       edges: []
@@ -276,7 +217,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e844b3e86013539428d1512394199c1c
+    spriteID: 56188e4c2baf42c4388ba51d0ccaa471
     internalID: 0
     vertices: []
     indices: 
@@ -286,12 +227,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MinuRun_0: 3014870602215937048
-      MinuRun_1: -5310901990696981728
-      MinuRun_2: -1632382468075052382
-      MinuRun_3: 4608659998045641909
-      MinuRun_4: -7822438275613039124
-      MinuRun_5: 5140232865924264229
+      Bullets_0: 874343242196921964
+      Bullets_1: 2107129931
+      Bullets_2: -1382077799
+      Bullets_3: 1001068434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
