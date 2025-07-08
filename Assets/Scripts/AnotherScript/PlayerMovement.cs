@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isTouchingWall;
 
     //jump vars
-    public float VerticalVelocity { get; private set; }
+    //public float VerticalVelocity { get; private set; }
+    public float VerticalVelocity { get; set;}
     private bool _isJumping;
     private bool _isFastFalling;
     private bool _isFalling;
