@@ -10,6 +10,7 @@ TagManager:
   - Dummy
   - Coin
   - Key
+  - Bullet
   layers:
   - Default
   - TransparentFX

@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
     [Header("General Bullet Stats")]
     [SerializeField] private LayerMask _whatDestroysBullet;
     [SerializeField] private float _destroyTime = 2f;
+    //[SerializeField] private LayerMask _whatToDestroy;
 
     [Header("Normal Bullet Stats")]
     [SerializeField, Range(5f, 20f)] private float _normalBulletSpeed = 15f;
@@ -110,6 +111,15 @@ public class Bullet : MonoBehaviour
             //Destroy(collision.gameObject);
         }
     }
+    /*
+    private void OnTriggerEnter2D(Collision2D collision)
+    {
+        if ((_whatToDestroy.value & (1 << collision.gameObject.layer)) > 0)
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+    */
 
     private void SetPhysicsVelocity()
     {
