@@ -28,6 +28,13 @@ public class PlayerMovement : MonoBehaviour {
     private bool _bumpedHead;
     private bool _isTouchingWall;
 
+    //wall climb vars
+    private bool _isWallClimbing;
+    private float _wallClimbTimer;
+    private float _wallClimbStaminaTimer;
+    private bool _isWallClimbExhausted;
+    private float _lastWallClimbTime;
+
     //jump vars
     //public float VerticalVelocity { get; private set; }
     public float VerticalVelocity { get; set;}
@@ -96,7 +103,7 @@ public class PlayerMovement : MonoBehaviour {
         LandCheck();
         WallJumpCheck();
         DashCheck();
-
+        WallClimbCheck();
         WallSlideCheck();
         UpdateAnimationStates();
     }
@@ -111,9 +118,19 @@ public class PlayerMovement : MonoBehaviour {
         bool isRising = yVel > 0.1f;
         bool isFalling = yVel < -0.1f;
 
-        // Wall slide takes priority over other states
-        if (_isWallSliding || _isWallSlideFalling)
+        // Wall climb takes priority over other states
+        if (_isWallClimbing)
         {
+            _animator.SetBool("isWallClimbing", true);
+            _animator.SetBool("isWallSliding", false);
+            _animator.SetBool("isRunning", false);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isFalling", false);
+        }
+        // Wall slide takes priority over other states
+        else if (_isWallSliding || _isWallSlideFalling)
+        {
+            _animator.SetBool("isWallClimbing", false);
             _animator.SetBool("isWallSliding", true);
             _animator.SetBool("isRunning", false);
             _animator.SetBool("isJumping", false);
@@ -121,6 +138,7 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
+            _animator.SetBool("isWallClimbing", false);
             _animator.SetBool("isWallSliding", false);
             _animator.SetBool("isRunning", isMovingHorizontally && _isGrounded);
             _animator.SetBool("isJumping", !_isGrounded && isRising);
@@ -137,6 +155,7 @@ public class PlayerMovement : MonoBehaviour {
         CollisionChecks();
         Jump();
         Fall();
+        WallClimb();
         WallSlide();
         WallJump();
         Dash();
@@ -147,8 +166,13 @@ public class PlayerMovement : MonoBehaviour {
         }
         else
         {
+            //wall climb
+            if (_isWallClimbing)
+            {
+                Move(MoveStats.WallClimbAcceleration, MoveStats.WallClimbDeceleration, InputManager.Movement);
+            }
             //wall jump
-            if (_useWallJumpMoveStats)
+            else if (_useWallJumpMoveStats)
             {
                 Move(MoveStats.WallJumpMoveAcceleration, MoveStats.WallJumpMoveDeceleration, InputManager.Movement);
             }
@@ -981,7 +1005,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void WallSlideCheck()
     {
-        if (_isTouchingWall && !_isGrounded && !_isDashing)
+        if (_isTouchingWall && !_isGrounded && !_isDashing && !_isWallClimbing)
         {
             if (VerticalVelocity < 0f && !_isWallSliding)
             {
@@ -1002,13 +1026,7 @@ public class PlayerMovement : MonoBehaviour {
                 }
             }
         }
-
-        else if (_isWallSliding && !_isTouchingWall && !_isGrounded && !_isWallSlideFalling)
-        {
-            _isWallSlideFalling = true;
-            StopWallSlide();
-        }
-        else
+        else if (_isWallSliding && (!_isTouchingWall || _isGrounded || _isWallSlideFalling || _isWallClimbing))
         {
             StopWallSlide();
         }
@@ -1056,6 +1074,82 @@ public class PlayerMovement : MonoBehaviour {
         if (_isGrounded)
         {
             _dashOnGroundTimer -= Time.deltaTime;
+        }
+    }
+
+    private void WallClimbCheck()
+    {
+        // Start wall climbing when touching wall and pressing up
+        if (_isTouchingWall && !_isGrounded && !_isDashing && !_isWallJumping)
+        {
+            if (InputManager.Movement.y > 0.1f && !_isWallClimbExhausted)
+            {
+                if (!_isWallClimbing)
+                {
+                    _isWallClimbing = true;
+                    _wallClimbTimer = 0f;
+                    StopWallSlide();
+                    ResetJumpValues();
+                    ResetWallJumpValues();
+                }
+            }
+            // Allow sliding down while wall climbing
+            else if (_isWallClimbing && InputManager.Movement.y < -0.1f)
+            {
+                StopWallClimb();
+                return;
+            }
+        }
+
+        // Stop wall climbing if conditions are not met
+        if (_isWallClimbing && (!_isTouchingWall || _isGrounded || _isDashing || _isWallJumping))
+        {
+            StopWallClimb();
+        }
+
+        // Handle wall climb stamina
+        if (_isWallClimbing)
+        {
+            _wallClimbTimer += Time.deltaTime;
+            if (_wallClimbTimer >= MoveStats.MaxWallClimbTime)
+            {
+                _isWallClimbExhausted = true;
+                _lastWallClimbTime = Time.time;
+                StopWallClimb();
+            }
+        }
+        else if (_isGrounded && _isWallClimbExhausted)
+        {
+            if (Time.time - _lastWallClimbTime >= MoveStats.WallClimbStaminaRecoveryTime)
+            {
+                _isWallClimbExhausted = false;
+                _wallClimbTimer = 0f;
+                _wallClimbStaminaTimer = 0f;
+            }
+        }
+    }
+
+    private void WallClimb()
+    {
+        if (_isWallClimbing)
+        {
+            // Apply vertical movement with smooth acceleration
+            float targetVelocity = MoveStats.WallClimbSpeed * InputManager.Movement.y;
+            VerticalVelocity = Mathf.Lerp(VerticalVelocity, targetVelocity, MoveStats.WallClimbAcceleration * Time.fixedDeltaTime);
+            
+            // Keep player close to wall with consistent force
+            float horizontalForce = _isFacingRight ? MoveStats.WallClimbHorizontalForce : -MoveStats.WallClimbHorizontalForce;
+            HorizontalVelocity = Mathf.Lerp(HorizontalVelocity, horizontalForce, MoveStats.WallClimbAcceleration * Time.fixedDeltaTime);
+        }
+    }
+
+    private void StopWallClimb()
+    {
+        if (_isWallClimbing)
+        {
+            _isWallClimbing = false;
+            // Apply a small vertical velocity to prevent instant falling
+            VerticalVelocity = Mathf.Max(VerticalVelocity, -2f);
         }
     }
 

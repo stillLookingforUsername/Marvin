@@ -15,6 +15,19 @@ public class PlayerMovementStats : ScriptableObject
     [Range(0.25f, 50f)] public float WallJumpMoveAcceleration = 5f;
     [Range(0.25f, 50f)] public float WallJumpMoveDeceleration = 5f;
 
+    [Header("Wall Climbing")]
+    [Tooltip("How fast the player climbs up and down")]
+    [Range(1f, 20f)] public float WallClimbSpeed = 5f;
+    [Tooltip("Force keeping the player against the wall")]
+    [Range(0.1f, 10f)] public float WallClimbHorizontalForce = 2f;
+    [Tooltip("How quickly the player reaches full climbing speed")]
+    [Range(0.25f, 50f)] public float WallClimbAcceleration = 15f;
+    [Tooltip("How quickly the player stops when releasing input")]
+    [Range(0.25f, 50f)] public float WallClimbDeceleration = 15f;
+    [Tooltip("Maximum time player can climb before getting exhausted")]
+    [Range(0.5f, 10f)] public float MaxWallClimbTime = 3f;
+    [Tooltip("Time needed to recover climbing stamina when grounded")]
+    [Range(0.1f, 5f)] public float WallClimbStaminaRecoveryTime = 1f;
 
 
     [Header("Run")]
