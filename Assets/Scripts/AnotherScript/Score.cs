@@ -24,10 +24,9 @@ public class Score : MonoBehaviour
 
     private void Start()
     {
+        _cnt = PlayerPrefs.GetInt("HighScore", 0);
         _currentcoinText.text = _cnt.ToString();
-
-        _highScore.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
-        UpdateHighScore();
+        _highScore.text = _cnt.ToString();
     }
 
     private void UpdateHighScore()
@@ -45,5 +44,13 @@ public class Score : MonoBehaviour
         _currentcoinText.text = _cnt.ToString();
         coinCollectSound.Play();
         UpdateHighScore();
+    }
+
+    // Called by ShopManager when coins are spent
+    public void UpdateHighScoreFromShop(int newAmount)
+    {
+        _cnt = newAmount;
+        _currentcoinText.text = _cnt.ToString();
+        _highScore.text = _cnt.ToString();
     }
 }

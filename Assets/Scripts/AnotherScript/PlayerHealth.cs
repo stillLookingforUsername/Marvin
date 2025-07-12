@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent<float> onHealthChanged;
     public UnityEvent onPlayerDeath;
 
-    private float currentHealth;
+    public float currentHealth;
     private bool isInvincible;
     private float invincibilityTimer;
 

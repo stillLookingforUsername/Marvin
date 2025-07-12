@@ -5,44 +5,147 @@ using TMPro;
 public class ShopManager : MonoBehaviour
 {
     public static ShopManager Instance;
+    public Upgrade[] upgrades;
+    
+    private int coins;
 
-    private void Awake()
+    //References
+    public TextMeshProUGUI coinText;
+    public GameObject shopUI;
+    public Transform shopContent;
+    public GameObject itemPrefab;
+    public PlayerHealth playerHealth;
+
+    public void Awake()
     {
-        if (Instance == null)
+        if(Instance == null)
         {
             Instance = this;
         }
-        else if (Instance != null && Instance != this)
+        else
         {
             Destroy(gameObject);
-            //return;
         }
+
+        //No to destroy the shop manager when the scene is changed
         DontDestroyOnLoad(gameObject);
     }
 
-    public int coins = 300;
+    public void Start()
+    {
+        // Load coins from PlayerPrefs (saved high score)
+        LoadCoins();
 
-    public Upgrade[] upgrades;
+        foreach(Upgrade upgrade in upgrades)
+        {
+            GameObject item = Instantiate(itemPrefab, shopContent);
 
-    //References
-    public Text coinText;
-    public GameObject shopUI;
-    public Transform ShopContent;
-    public GameObject itemPrefab;
-    public PlayerMovement player;
+            upgrade.itemRef = item;
 
+            foreach(Transform child in item.transform)
+            {
+                if(child.gameObject.name == "Quantity")
+                {
+                    child.gameObject.GetComponent<TextMeshProUGUI>().text = upgrade.quantity.ToString();
+                }
+                else if(child.gameObject.name == "Cost")
+                {
+                    child.gameObject.GetComponent<TextMeshProUGUI>().text = upgrade.cost.ToString();
+                }
+                else if(child.gameObject.name == "Name")
+                {
+                    child.gameObject.GetComponent<TextMeshProUGUI>().text = upgrade.name;
+                }
+                else if(child.gameObject.name == "Image")
+                {
+                    child.gameObject.GetComponent<Image>().sprite = upgrade.image;
+                }
+            }
+            item.GetComponent<Button>().onClick.AddListener(() => Buy(upgrade));
+        }
 
+        // Update UI with initial coin count
+        UpdateCoinText();
+    }
+
+    private void LoadCoins()
+    {
+        coins = PlayerPrefs.GetInt("HighScore", 0);
+    }
+
+    private void SaveCoins()
+    {
+        PlayerPrefs.SetInt("HighScore", coins);
+        PlayerPrefs.Save();
+
+        // If Score instance exists, update its display
+        if (Score.Instance != null)
+        {
+            Score.Instance.UpdateHighScoreFromShop(coins);
+        }
+    }
+
+    public void Buy(Upgrade upgrade)
+    {
+        if(coins >= upgrade.cost)
+        {
+            coins -= upgrade.cost;
+            upgrade.quantity++;
+            upgrade.itemRef.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = upgrade.quantity.ToString();
+
+            // Save coins after purchase
+            SaveCoins();
+            // Update UI
+            UpdateCoinText();
+
+            ApplyUpgrade(upgrade);
+        }
+    }
+
+    private void UpdateCoinText()
+    {
+        if (coinText != null)
+        {
+            coinText.text = "Coins: " + coins.ToString();
+        }
+    }
+
+    public void ApplyUpgrade(Upgrade upgrade)
+    {
+        if (playerHealth == null)
+        {
+            Debug.LogError("PlayerHealth reference is missing in ShopManager!");
+            return;
+        }
+
+        switch(upgrade.name)
+        {
+            case "Health":
+                playerHealth.Heal(10f);
+                break;
+            default:
+                Debug.Log("Upgrade not found");
+                break;
+
+                /*
+            case "Speed":
+                playerMovement.speed += 1;
+                break;
+            case "Jump":
+            */
+        }
+    }
 
     public void ToggleShop()
     {
+        // Refresh coin count when shop is opened
+        if (!shopUI.activeSelf)
+        {
+            LoadCoins();
+            UpdateCoinText();
+        }
         shopUI.SetActive(!shopUI.activeSelf);
     }
-
-    private void OnGUI()
-    {
-        coinText.text = "Coins: " + coins.ToString();
-    }
-
 }
 
 [System.Serializable]
