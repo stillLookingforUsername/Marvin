@@ -20,6 +20,12 @@ MonoBehaviour:
   AirDeceleration: 5
   WallJumpMoveAcceleration: 5
   WallJumpMoveDeceleration: 5
+  WallClimbSpeed: 5
+  WallClimbHorizontalForce: 2
+  WallClimbAcceleration: 15
+  WallClimbDeceleration: 15
+  MaxWallClimbTime: 0.83
+  WallClimbStaminaRecoveryTime: 1
   MaxRunSpeed: 8.1
   GroundLayer:
     serializedVersion: 2

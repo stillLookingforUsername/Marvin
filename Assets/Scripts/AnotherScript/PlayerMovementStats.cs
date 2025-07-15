@@ -25,7 +25,7 @@ public class PlayerMovementStats : ScriptableObject
     [Tooltip("How quickly the player stops when releasing input")]
     [Range(0.25f, 50f)] public float WallClimbDeceleration = 15f;
     [Tooltip("Maximum time player can climb before getting exhausted")]
-    [Range(0.5f, 10f)] public float MaxWallClimbTime = 3f;
+    [Range(0.5f, 10f)] public float MaxWallClimbTime = 1f;
     [Tooltip("Time needed to recover climbing stamina when grounded")]
     [Range(0.1f, 5f)] public float WallClimbStaminaRecoveryTime = 1f;
 

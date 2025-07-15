@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.27, y: -1.74, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.16, y: 3.607917, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -125,7 +125,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.37801433}
+  m_Offset: {x: 0.35610867, y: 0.008198559}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -135,7 +135,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.24397135}
+  m_Size: {x: 0.30091882, y: 1.0160372}
   m_EdgeRadius: 0
 --- !u!50 &7632636663031123730
 Rigidbody2D:
@@ -186,8 +186,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8a45d705c718bfa47abfc8e3134e861c, type: 3}
-  m_Resource: {fileID: 8300000, guid: 8a45d705c718bfa47abfc8e3134e861c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fd00b1bc16fbafd43bb87bbbf53818b9, type: 3}
+  m_Resource: {fileID: 8300000, guid: fd00b1bc16fbafd43bb87bbbf53818b9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

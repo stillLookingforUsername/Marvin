@@ -174,4 +174,4 @@ MonoBehaviour:
   _physicsBulletSpeed: 16.2
   _physicsBulletGravity: 6.3
   _physicsBulletDamage: 2
-  bulletType: 1
+  bulletType: 0
