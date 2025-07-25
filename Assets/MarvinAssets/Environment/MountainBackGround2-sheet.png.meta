@@ -560,7 +560,24 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MountainBackGround2-sheet_0: 5502221822802128639
+      MountainBackGround2-sheet_1: 1165926472111832854
+      MountainBackGround2-sheet_10: 7728539441676906697
+      MountainBackGround2-sheet_11: 8525154661688148296
+      MountainBackGround2-sheet_12: -759922840855841868
+      MountainBackGround2-sheet_13: -6128593751470782847
+      MountainBackGround2-sheet_14: 3839857422719443524
+      MountainBackGround2-sheet_15: -1791574922944801311
+      MountainBackGround2-sheet_16: -7912922993433238762
+      MountainBackGround2-sheet_2: 1212097292762514700
+      MountainBackGround2-sheet_3: -6482758681547383749
+      MountainBackGround2-sheet_4: 5600269615986587350
+      MountainBackGround2-sheet_5: -1285311717520272567
+      MountainBackGround2-sheet_6: -2786310445215744441
+      MountainBackGround2-sheet_7: -7841202559086987633
+      MountainBackGround2-sheet_8: 7773500842113494431
+      MountainBackGround2-sheet_9: -7455890093671730816
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

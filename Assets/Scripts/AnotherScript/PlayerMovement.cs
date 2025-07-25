@@ -35,6 +35,12 @@ public class PlayerMovement : MonoBehaviour {
     private bool _isWallClimbExhausted;
     private float _lastWallClimbTime;
 
+    // wall grip vars
+    private bool _isWallGripping;
+    private float _wallGripTimer;
+    [SerializeField] private float _wallGripDuration = 2f; // seconds
+
+
     //jump vars
     //public float VerticalVelocity { get; private set; }
     public float VerticalVelocity { get; set;}
@@ -98,6 +104,20 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update()
     {
+        // Wall grip input
+        if (_isTouchingWall && Input.GetKeyDown(KeyCode.J) && !_isWallGripping)
+        {
+            StartWallGrip();
+        }
+        // Wall grip timer logic
+        if (_isWallGripping)
+        {
+            _wallGripTimer -= Time.deltaTime;
+            if (_wallGripTimer <= 0f || !_isTouchingWall)
+            {
+                StopWallGrip();
+            }
+        }
         JumpChecks();
         CountTimers();
         LandCheck();
@@ -152,6 +172,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        if (_isWallGripping)
+        {
+            HorizontalVelocity = 0f;
+            VerticalVelocity = 0f;
+            ApplyVelocity();
+            return; // Skip other movement logic while gripping
+        }
         CollisionChecks();
         Jump();
         Fall();
@@ -1154,6 +1181,19 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     #endregion
+
+    private void StartWallGrip()
+    {
+        _isWallGripping = true;
+        _wallGripTimer = _wallGripDuration;
+        HorizontalVelocity = 0f;
+        VerticalVelocity = 0f;
+    }
+
+    private void StopWallGrip()
+    {
+        _isWallGripping = false;
+    }
 
     private void OnDrawGizmos()
     {
