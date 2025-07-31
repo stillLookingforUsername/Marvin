@@ -5,6 +5,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [Header("Health Settings")]
     [SerializeField] private float maxHealth = 100f;
+    public float MaxHealth
+    {
+        get {return maxHealth;}
+    }
     [SerializeField] private float invincibilityDuration = 1f;
     
     [Header("Events")]
@@ -63,6 +67,8 @@ public class PlayerHealth : MonoBehaviour
     {
         onPlayerDeath?.Invoke();
         // You can add more death logic here
+
         Debug.Log("Player died!");
+        gameObject.SetActive(false);
     }
 } 

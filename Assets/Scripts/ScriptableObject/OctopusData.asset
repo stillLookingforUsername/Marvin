@@ -15,6 +15,6 @@ MonoBehaviour:
   chaseSpeed: 3
   detectionRadius: 2.42
   attackRadius: 1.74
-  damage: 4
+  damage: 20
   attackCooldown: 1
   maxHealth: 100

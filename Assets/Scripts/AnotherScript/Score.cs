@@ -19,7 +19,6 @@ public class Score : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _currentcoinText;
     [SerializeField] private TextMeshProUGUI _highScore;
 
-    public AudioSource coinCollectSound;
     private int _cnt;
 
     private void Start()
@@ -42,7 +41,7 @@ public class Score : MonoBehaviour
     {
         _cnt++;
         _currentcoinText.text = _cnt.ToString();
-        coinCollectSound.Play();
+        SoundManager.PlaySound(SoundType.COIN);
         UpdateHighScore();
     }
 

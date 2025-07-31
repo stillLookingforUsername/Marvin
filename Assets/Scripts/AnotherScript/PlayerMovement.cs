@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private Collider2D _feetColl;
     [SerializeField] private Collider2D _bodyColl;
 
+    #region UI Input
+    private bool moveLeft = false;
+    private bool moveRight = false;
+    private bool jumpPressed = false;
+
+    #endregion
 
     private Animator _animator;
     private Rigidbody2D _rb;
@@ -104,8 +110,8 @@ public class PlayerMovement : MonoBehaviour {
 
     private void Update()
     {
-        // Wall grip input
-        if (_isTouchingWall && Input.GetKeyDown(KeyCode.J) && !_isWallGripping)
+        // Wall grip input - support both keyboard (J key) and UI button
+        if(_isTouchingWall && (Input.GetKeyDown(KeyCode.J) || InputManager.UIWallGripPressed) && !_isWallGripping)
         {
             StartWallGrip();
         }
