@@ -566,7 +566,9 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 boxCastOrigin = new Vector2(originEndPoint, _bodyColl.bounds.center.y);
         Vector2 boxCastSize = new Vector2(MoveStats.WallDetectionRayLength, adjustedHeight);
 
-        _wallHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, transform.right, MoveStats.WallDetectionRayLength, MoveStats.GroundLayer);
+        //_wallHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, transform.right, MoveStats.WallDetectionRayLength, MoveStats.GroundLayer);
+        Vector2 castDirection = _isFacingRight ? Vector2.right : Vector2.left;
+        _wallHit = Physics2D.BoxCast(boxCastOrigin, boxCastSize, 0f, castDirection, MoveStats.WallDetectionRayLength, MoveStats.GroundLayer);
 
         if (_wallHit.collider != null)
         {

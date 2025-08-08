@@ -141,6 +141,7 @@ public class PlayerMovementStats : ScriptableObject
         //wall jump
         AdjustedWallJumpHeight = WallJumpDirection.y * JumpHeightCompensationFactor;
         WallJumpGravity = -(2f * AdjustedWallJumpHeight) / Mathf.Pow(TimeTillJumpApex, 2f);
-        InitialJumpVelocity = Mathf.Abs(WallJumpGravity) * TimeTillJumpApex;
+        //InitialJumpVelocity = Mathf.Abs(WallJumpGravity) * TimeTillJumpApex;
+        InitialWallJumpVelocity = Mathf.Abs(WallJumpGravity) * TimeTillJumpApex;
     }
 }
