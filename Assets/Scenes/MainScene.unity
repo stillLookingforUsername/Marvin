@@ -30356,6 +30356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8401175259995076148}
+  _debugCameraRotation: 1
   _menuCanvas: {fileID: 702066181}
   _toggleKey: 27
 --- !u!4 &1258776561
@@ -31208,7 +31209,6 @@ GameObject:
   - component: {fileID: 1302432414}
   - component: {fileID: 1302432417}
   - component: {fileID: 1302432416}
-  - component: {fileID: 1302432415}
   - component: {fileID: 1302432418}
   m_Layer: 0
   m_Name: CmCam
@@ -31232,35 +31232,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1349357983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1302432415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302432413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 0
-      Size: {x: 0.2, y: 0.2}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 0.5, y: 0.5}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
 --- !u!114 &1302432416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51846,6 +51817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8401175259995076148}
+  _debugCameraRotation: 0
   _menuCanvas: {fileID: 702066181}
   _toggleKey: 27
 --- !u!1 &1891310131

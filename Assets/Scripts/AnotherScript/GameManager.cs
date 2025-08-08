@@ -2,12 +2,18 @@ using System.Collections;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private GameObject player;
     private Vector3 _spawnPosition;
+    private CinemachineCamera _cinemachineCamera;
+    
+    [Header("Debug")]
+    [SerializeField] private bool _debugCameraRotation = false;
+    
     private void Awake()
     {
         if(instance == null)
@@ -20,6 +26,28 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         //_spawnPosition = player.transform.position;
+        
+        // Find the Cinemachine camera (Cinemachine 3)
+        _cinemachineCamera = FindFirstObjectByType<CinemachineCamera>();
+
+        // Ensure rotation lock component exists on the Cinemachine camera root
+        if (_cinemachineCamera != null)
+        {
+            var locker = _cinemachineCamera.gameObject.GetComponent<CameraRotationLocker>();
+            if (locker == null)
+            {
+                locker = _cinemachineCamera.gameObject.AddComponent<CameraRotationLocker>();
+            }
+            locker.lockX = true;
+            locker.lockY = true;
+            locker.lockZ = true;
+            locker.lockedEulerAngles = Vector3.zero;
+        }
+
+        if (_debugCameraRotation)
+        {
+            Debug.Log("GameManager: Found CinemachineCamera: " + (_cinemachineCamera != null));
+        }
     }
 
     [SerializeField] private GameObject _menuCanvas;
@@ -57,6 +85,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
         player.transform.position = _spawnPosition;
         player.transform.rotation = Quaternion.identity;
+        
+       
         var health = player.GetComponent<PlayerHealth>();
 
         if (health != null)
@@ -67,6 +97,7 @@ public class GameManager : MonoBehaviour
         player.SetActive(true);
     }
 
+    
     private void Update()
     {
         if (Input.GetKeyDown(_toggleKey))
