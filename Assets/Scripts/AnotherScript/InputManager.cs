@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
     public static PlayerInput PlayerInput;
     public static Vector2 Movement;
     public static bool JumpWasPressed;
@@ -42,6 +43,16 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         PlayerInput = GetComponent<PlayerInput>();
 
         _moveAction = PlayerInput.actions["Move"];

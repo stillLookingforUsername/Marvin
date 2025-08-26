@@ -7,10 +7,10 @@ public class CodeCheckPanel : MonoBehaviour
 {
     public TMP_Text codeDisplay;
     public GameObject codePanel;
+    [SerializeField] private Door _associatedDoor; // Reference to the door this panel is for
 
     private string _correctCode = "1122";
     private string _currentCode = "";
-
 
     public void AddDigit(string digit)
     {
@@ -20,6 +20,7 @@ public class CodeCheckPanel : MonoBehaviour
             UpdateDisplay();
         }
     }
+    
     public void SubmitCode()
     {
         CodeCheck();
@@ -33,7 +34,7 @@ public class CodeCheckPanel : MonoBehaviour
 
     private void UpdateDisplay()
     {
-        codeDisplay.text = _currentCode.PadRight(4, '_'); // e.g. "12_"
+        codeDisplay.text = _currentCode.PadRight(4,'_'); // e.g. "12_"
     }
 
     private void CodeCheck()
@@ -45,18 +46,24 @@ public class CodeCheckPanel : MonoBehaviour
             //deactivate the panel
             codePanel.SetActive(false);
 
-            // transition to next level
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            SceneManager.LoadScene(2);
-
+            // Call the door's scene transition method instead of directly loading scene
+            if (_associatedDoor != null)
+            {
+                _associatedDoor.OnCorrectCodeEntered();
+            }
+            else
+            {
+                Debug.LogWarning("CodeCheckPanel: No associated door assigned! Using fallback scene loading.");
+                // Fallback to direct scene loading if no door is assigned
+                SceneManager.LoadScene(2);
+            }
         }
         else
         {
             Debug.Log("Wrong Code");
 
             //clear input
-            codeDisplay.text = "";
+            ClearInput();
         }
     }
-
 }
