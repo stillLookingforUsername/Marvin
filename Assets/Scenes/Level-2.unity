@@ -18477,7 +18477,7 @@ MonoBehaviour:
   _player: {fileID: 8401175259995076148}
   codeUIPanel: {fileID: 1792703174}
   _useGameManagerSceneTransition: 1
-  _targetSceneIndex: -1
+  _targetSceneIndex: 3
   _requireCodePanel: 1
   _doorName: MainScene Door
 --- !u!50 &814155475
@@ -50277,8 +50277,8 @@ MonoBehaviour:
   codePanel: {fileID: 1792703174}
   _associatedDoor: {fileID: 814155474}
   _doorID: 
-  _config: {fileID: 0}
-  _correctCode: 1010
+  _config: {fileID: 11400000, guid: deddacd4ab77c7749b92abf5eafd4d25, type: 2}
+  _correctCode: 2525
   _codeLength: 4
 --- !u!114 &1792703176
 MonoBehaviour:
