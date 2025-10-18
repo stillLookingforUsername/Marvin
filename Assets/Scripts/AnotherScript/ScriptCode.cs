@@ -12,9 +12,20 @@ public class ScriptCode : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        //if(collision.gameObject.CompareTag("Player"))
+        if(collision.TryGetComponent<PlayerMovement>(out PlayerMovement player))
         {
-            audioSource.Play();
+            //Check if codeDisplayPanel is assigned
+            if (codeDisplayPanel == null)
+            {
+                Debug.Log("CodeDisplay is not assigned");
+                return;
+            }
+            //play audio if available
+            if(audioSource != null && audioSource.clip != null)
+            {
+                audioSource.Play();
+            }
             codeDisplayPanel.SetActive(true);
             Invoke("HideCodeDisplay", duration);
             //gameObject.SetActive(false);
