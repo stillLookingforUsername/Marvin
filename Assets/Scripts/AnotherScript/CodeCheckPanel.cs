@@ -62,9 +62,23 @@ public class CodeCheckPanel : MonoBehaviour
             }
             else
             {
+                /*
                 Debug.LogWarning("CodeCheckPanel: No associated door assigned! Using fallback scene loading.");
                 // Fallback to direct scene loading if no door is assigned
                 SceneManager.LoadScene(2);
+                */
+                Debug.LogWarning("CodeCheckPanel: No associated door assigned! Using GameManager fallback.");
+                // Fallback to GameManager scene loading if no door is assigned
+                if (GameManager.instance != null)
+                {
+                    // Load Level-2 specifically using GameManager
+                    GameManager.instance.LoadLevel2();
+                }
+                else
+                {
+                    Debug.LogError("CodeCheckPanel: No GameManager found! Loading Level-2 directly.");
+                    SceneManager.LoadScene(2); // Level-2 scene index
+                }
             }
         }
         else

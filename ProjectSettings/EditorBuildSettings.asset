@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level-2.unity
     guid: 5b68e37e19d4335489e5bd8653229c20
-  - enabled: 0
-    path: Assets/Scenes/Grenade.unity
-    guid: a2c1274324685a040b62c8d8c88beb51
   - enabled: 1
     path: Assets/Scenes/GameOverScene.unity
     guid: 012745c9988d6d441b6f6e7a5422b569

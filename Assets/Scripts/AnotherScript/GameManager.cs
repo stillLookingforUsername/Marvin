@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log($"GameManager: Initialized scene management. Current scene index: {_currentSceneIndex}");
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     [SerializeField] private GameObject _menuCanvas;
@@ -95,6 +96,24 @@ public class GameManager : MonoBehaviour
             {
                 healthh.onPlayerDeath.RemoveListener(RespawnPlayer);
             }
+        }
+
+        // Unsubscribe from scene loaded events
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    private void OnDestroy()
+    {
+        // Unsubscribe from scene loaded events
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        _currentSceneIndex = scene.buildIndex;
+        if (_debugSceneManagement)
+        {
+            Debug.Log($"GameManager: Scene loaded - {scene.name} (index: {_currentSceneIndex})");
         }
     }
     
@@ -159,14 +178,19 @@ public class GameManager : MonoBehaviour
         
         StartCoroutine(LoadSceneCoroutine(sceneIndex));
     }
-    
+
     /// <summary>
     /// Loads the next scene in build order
     /// </summary>
     public void LoadNextScene()
     {
         int nextSceneIndex = _currentSceneIndex + 1;
-        
+
+        if (_debugSceneManagement)
+        {
+            Debug.Log($"GameManager: LoadNextScene called. current: {_currentSceneIndex}");
+        }
+
         if (nextSceneIndex >= SceneManager.sceneCountInBuildSettings)
         {
             if (_debugSceneManagement)
@@ -175,8 +199,20 @@ public class GameManager : MonoBehaviour
             }
             nextSceneIndex = 0;
         }
-        
+
         LoadScene(nextSceneIndex);
+    }
+
+    /// <summary>
+    /// Loads Level-2 specifically (for Level-1 to Level-2 transition)
+    /// </summary>
+    public void LoadLevel2()
+    {
+        if (_debugSceneManagement)
+        {
+            Debug.Log("GameManager: Loading Level-2 specifically");
+        }
+        LoadScene(2); // Level-2 scene index
     }
     
     /// <summary>
@@ -201,11 +237,15 @@ public class GameManager : MonoBehaviour
         {
             _transitionUI.SetActive(true);
         }
-        
+
         // Wait for transition delay
         yield return new WaitForSeconds(_sceneTransitionDelay);
-        
+
         // Load next scene
+        if (_debugSceneManagement)
+        {
+            Debug.Log($"GameManager: About to call LoadNextScene from TransitionToNextScene. Current scene index: {_currentSceneIndex}");
+        }
         LoadNextScene();
     }
     
@@ -235,7 +275,8 @@ public class GameManager : MonoBehaviour
         
         if (_debugSceneManagement)
         {
-            Debug.Log($"GameManager: Scene {sceneIndex} loaded successfully");
+            //Debug.Log($"GameManager: Scene {sceneIndex} loaded successfully");
+            Debug.Log($"GameManager: Scene {sceneIndex} loaded successfully. Updated current scene index to: {_currentSceneIndex}");
         }
         
         _isTransitioning = false;
