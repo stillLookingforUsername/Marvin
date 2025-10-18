@@ -20175,6 +20175,7 @@ GameObject:
   - component: {fileID: 906119668}
   - component: {fileID: 906119670}
   - component: {fileID: 906119669}
+  - component: {fileID: 906119671}
   m_Layer: 5
   m_Name: Code
   m_TagString: Untagged
@@ -20300,6 +20301,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906119667}
   m_CullTransparentMesh: 1
+--- !u!114 &906119671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906119667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39d324bb7beeb964ea79004615294f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CodeDisplayBinder
+  _targets: []
+  _config: {fileID: 11400000, guid: deddacd4ab77c7749b92abf5eafd4d25, type: 2}
+  _doorId: 
+  _fallbackCode: 1122
+  _format: '{0}'
 --- !u!1 &912036399
 GameObject:
   m_ObjectHideFlags: 0
@@ -23017,6 +23035,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   codeDisplayPanel: {fileID: 1528346971}
   duration: 2
+  _config: {fileID: 0}
+  _doorID: 
+  _fallbackCode: 1122
 --- !u!82 &1077642764
 AudioSource:
   m_ObjectHideFlags: 0
