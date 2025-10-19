@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _sceneTransitionDelay = 1f;
     [SerializeField] private bool _showTransitionUI = true;
     [SerializeField] private GameObject _transitionUI;
+
+    [Header("Death & Respawn Settings")]
+    [SerializeField] private float _deathDelay = 1f;
+    [SerializeField] private bool _reloadSceneOnDeath = true;
+    [SerializeField] private bool _enableDebugDeathLogs = true;
     
     [Header("Debug")]
     [SerializeField] private bool _debugCameraRotation = false;
@@ -116,11 +121,79 @@ public class GameManager : MonoBehaviour
             Debug.Log($"GameManager: Scene loaded - {scene.name} (index: {_currentSceneIndex})");
         }
     }
-    
+    /*
     private void RespawnPlayer()
     {
         StartCoroutine(RespawnAfterDelay(1f));
     }
+    */
+    private void RespawnPlayer()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        string sceneName = SceneManager.GetActiveScene().name;
+        
+        if (_enableDebugDeathLogs)
+        {
+            Debug.Log($"GameManager: Player died in scene {currentScene} ({sceneName})");
+        }
+        
+        // Check if we should reload the scene or use checkpoint respawn
+        if (_reloadSceneOnDeath && ShouldReloadSceneOnDeath(currentScene))
+        {
+            if (_enableDebugDeathLogs)
+            {
+                Debug.Log($"GameManager: Reloading scene {sceneName} due to player death");
+            }
+            StartCoroutine(ReloadSceneAfterDelay(_deathDelay));
+        }
+        else
+        {
+            if (_enableDebugDeathLogs)
+            {
+                Debug.Log($"GameManager: Using checkpoint respawn in scene {sceneName}");
+            }
+            StartCoroutine(RespawnAfterDelay(_deathDelay));
+        }
+    }
+    
+    /// <summary>
+    /// Determines if the scene should be reloaded when player dies
+    /// </summary>
+    private bool ShouldReloadSceneOnDeath(int sceneIndex)
+    {
+        // Reload scene for Level-1 (index 1) and Level-2 (index 2)
+        // Keep checkpoint respawn for Home (index 0) and GameOverScene (index 3)
+        return sceneIndex == 1 || sceneIndex == 2;
+    }
+    
+    /// <summary>
+    /// Reloads the current scene after a delay
+    /// </summary>
+    private IEnumerator ReloadSceneAfterDelay(float delay)
+    {
+        if (_enableDebugDeathLogs)
+        {
+            Debug.Log($"GameManager: Reloading scene in {delay} seconds...");
+        }
+        
+        // Show death UI or effects here if you have them
+        // You can add death screen, fade out, etc.
+        
+        yield return new WaitForSeconds(delay);
+        
+        // Reload the current scene
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
+        
+        if (_enableDebugDeathLogs)
+        {
+            Debug.Log($"GameManager: Scene {currentScene} reloaded successfully");
+        }
+    }
+    
+    /// <summary>
+    /// Original respawn method for checkpoint-based respawning
+    /// </summary>
     
     private IEnumerator RespawnAfterDelay(float delay)
     {
@@ -136,6 +209,11 @@ public class GameManager : MonoBehaviour
             health.onHealthChanged?.Invoke(1f);
         }
         player.SetActive(true);
+
+        if(_enableDebugDeathLogs)
+        {
+            Debug.Log("GameManager: Player respawn at checkpoint");
+        }
     }
 
     #region Scene Management
@@ -296,6 +374,26 @@ public class GameManager : MonoBehaviour
     public bool IsTransitioning()
     {
         return _isTransitioning;
+    }
+    /// <summary>
+    /// Test method to manually trigger player death (for debugging)
+    /// </summary>
+    [ContextMenu("Test Player Death")]
+    public void TestPlayerDeath()
+    {
+        Debug.Log("GameManager: TestPlayerDeath called");
+        RespawnPlayer();
+    }
+    
+    /// <summary>
+    /// Test method to manually reload current scene (for debugging)
+    /// </summary>
+    [ContextMenu("Test Reload Current Scene")]
+    public void TestReloadCurrentScene()
+    {
+        Debug.Log("GameManager: TestReloadCurrentScene called");
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
     
     #endregion
