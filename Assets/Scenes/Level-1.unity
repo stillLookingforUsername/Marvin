@@ -2005,6 +2005,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 966442715}
     m_Modifications:
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.b
+      value: 0.9547169
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.g
+      value: 0.85328406
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.r
+      value: 0.019814858
+      objectReference: {fileID: 0}
     - target: {fileID: 3099217199218314763, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
       propertyPath: m_Name
       value: CloudAreaEffector (3)
@@ -3827,7 +3839,7 @@ Transform:
   m_GameObject: {fileID: 115906399}
   serializedVersion: 2
   m_LocalRotation: {x: -0.040897068, y: 0.000000030693833, z: 0.0000000012563388, w: 0.9991634}
-  m_LocalPosition: {x: -21.2, y: -0.78, z: -10}
+  m_LocalPosition: {x: 27.18, y: -4.84, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4944,6 +4956,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 966442715}
     m_Modifications:
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.b
+      value: 0.9547169
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.g
+      value: 0.85328406
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.r
+      value: 0.019814858
+      objectReference: {fileID: 0}
     - target: {fileID: 3099217199218314763, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
       propertyPath: m_Name
       value: CloudAreaEffector (2)
@@ -15003,33 +15027,14 @@ GameObject:
   m_Component:
   - component: {fileID: 446633860}
   - component: {fileID: 446633859}
-  - component: {fileID: 446633858}
+  - component: {fileID: 446633861}
   m_Layer: 0
   m_Name: DeathTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &446633858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446633857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1559ade91d6e75648898e56c15cf7431, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Trap
-  bounceForce: 5
-  resetJumpsOnBounce: 1
-  resetDashesOnBounce: 1
-  damageAmount: 50
-  trapColor: {r: 1, g: 1, b: 1, a: 1}
-  useVisualFeedback: 1
-  flashDuration: 0.1
+  m_IsActive: 0
 --- !u!61 &446633859
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15060,11 +15065,11 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 21.461428, y: -0.44902086}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -15074,7 +15079,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 51.152615, y: 0.101958275}
   m_EdgeRadius: 0
 --- !u!4 &446633860
 Transform:
@@ -15091,6 +15096,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446633861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446633857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06f7f6decc3b784ab7507bdd1759c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathTrigger
 --- !u!1 &448471026
 GameObject:
   m_ObjectHideFlags: 0
@@ -19550,6 +19567,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 966442715}
     m_Modifications:
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.b
+      value: 0.9547169
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.g
+      value: 0.85328406
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.r
+      value: 0.019814858
+      objectReference: {fileID: 0}
     - target: {fileID: 3099217199218314763, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
       propertyPath: m_Name
       value: CloudAreaEffector (1)
@@ -28846,6 +28875,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 966442715}
     m_Modifications:
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.b
+      value: 0.9547169
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.g
+      value: 0.85328406
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.r
+      value: 0.019814858
+      objectReference: {fileID: 0}
     - target: {fileID: 3099217199218314763, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
       propertyPath: m_Name
       value: CloudAreaEffector (5)
@@ -35260,6 +35301,7 @@ GameObject:
   - component: {fileID: 814155475}
   - component: {fileID: 814155474}
   - component: {fileID: 814155479}
+  - component: {fileID: 814155480}
   m_Layer: 0
   m_Name: Door_0
   m_TagString: Untagged
@@ -35455,6 +35497,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &814155480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814155473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d51fab71b3eb5d0488e45a167d118b0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorUpDown
+  moveDistance: 0.5
+  duration: 1
 --- !u!1 &820396930
 GameObject:
   m_ObjectHideFlags: 0
@@ -54630,6 +54686,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 966442715}
     m_Modifications:
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.b
+      value: 0.9547169
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.g
+      value: 0.85328406
+      objectReference: {fileID: 0}
+    - target: {fileID: 1115362899478254957, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
+      propertyPath: trapColor.r
+      value: 0.019814858
+      objectReference: {fileID: 0}
     - target: {fileID: 3099217199218314763, guid: ccea6bd7dd8939b41a2321f1d3f29d74, type: 3}
       propertyPath: m_Name
       value: CloudAreaEffector (4)
@@ -56744,7 +56812,7 @@ Transform:
   m_GameObject: {fileID: 1302432413}
   serializedVersion: 2
   m_LocalRotation: {x: -0.040897064, y: 0.00000003069383, z: 0.0000000012563386, w: 0.9991634}
-  m_LocalPosition: {x: -21.2, y: -0.78, z: -10}
+  m_LocalPosition: {x: 27.18, y: -4.84, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -70831,7 +70899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1553563151
 RectTransform:
   m_ObjectHideFlags: 0
@@ -86058,6 +86126,98 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1923884178}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1879514060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1879514063}
+  - component: {fileID: 1879514062}
+  - component: {fileID: 1879514061}
+  m_Layer: 0
+  m_Name: DeathTriggerActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1879514061
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879514060}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.117281914, y: 0.7890179}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.11587334, y: 3.2276006}
+  m_EdgeRadius: 0
+--- !u!114 &1879514062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879514060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69da633f71ad0924cbaf6264ab696365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DeathTriggerActivator
+  deathTrigger: {fileID: 446633857}
+--- !u!4 &1879514063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879514060}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 29.22, y: -3.67, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1885851942
 GameObject:
@@ -106926,6 +107086,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: -1, y: -1, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   - first: {x: 14, y: -1, z: 0}
     second:
       serializedVersion: 2
@@ -112412,7 +112582,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 770
+  - m_RefCount: 771
     m_Data: {fileID: 11400000, guid: 302c5df584e3f2948a6de32dde9935a6, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -112427,7 +112597,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 770
+  - m_RefCount: 771
     m_Data: {fileID: 2189479354614629161, guid: 153af81bcd840c745a7f5a88ad2e8a86, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -112438,7 +112608,7 @@ Tilemap:
   - m_RefCount: 679
     m_Data: {fileID: -3767660924086805162, guid: 153af81bcd840c745a7f5a88ad2e8a86, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1449
+  - m_RefCount: 1450
     m_Data:
       e00: 1
       e01: 0
@@ -112457,7 +112627,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 1449
+  - m_RefCount: 1450
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -112628,14 +112798,8 @@ CompositeCollider2D:
         Y: -20166666
       - X: 110100000
         Y: -9800000
-      - X: -9900000
-        Y: -9800000
-      - X: -9900000
-        Y: -200000
-      - X: 66666
-        Y: -200000
       - X: 99999
-        Y: -166666
+        Y: -9800000
       - X: 99999
         Y: 39800000
       - X: 150066656
@@ -112851,10 +113015,7 @@ CompositeCollider2D:
       - {x: 11.006674, y: -2.0199924}
       - {x: 11.01, y: -2.016656}
       - {x: 11.009971, y: -0.98}
-      - {x: -0.99, y: -0.97997063}
-      - {x: -0.9899706, y: -0.02}
-      - {x: 0.0066742003, y: -0.0199924}
-      - {x: 0.0099999, y: -0.0166558}
+      - {x: 0.0099999, y: -0.97997063}
       - {x: 0.0100293, y: 3.98}
       - {x: 15.006674, y: 3.9800076}
       - {x: 15.01, y: 3.983344}
@@ -114154,7 +114315,7 @@ Transform:
   m_GameObject: {fileID: 8401175259995076148}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.2, y: -0.78, z: 0}
+  m_LocalPosition: {x: 27.18, y: -4.84, z: 0}
   m_LocalScale: {x: 1.1019, y: 1.1411, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -114524,6 +114685,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1891147842}
   - {fileID: 276274225}
+  - {fileID: 1879514063}
   - {fileID: 446633860}
   - {fileID: 806381391}
   - {fileID: 376855999}
