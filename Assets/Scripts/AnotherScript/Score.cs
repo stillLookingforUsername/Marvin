@@ -41,7 +41,7 @@ public class Score : MonoBehaviour
     {
         _cnt++;
         _currentcoinText.text = _cnt.ToString();
-        SoundManager.PlaySound(SoundType.COIN);
+        //SoundManager.PlaySound(SoundType.COIN);
         UpdateHighScore();
     }
 

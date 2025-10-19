@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speakerName: Zenia
   paragraphs:
-  - 'Hi, my name is Zenia.
+  - Hey!
+  - 'Collect the script and remember the code.
 
 '
-  - 'how was your day.
+  - 'and you need to collect the key too
 
 '

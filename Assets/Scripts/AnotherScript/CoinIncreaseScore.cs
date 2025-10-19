@@ -7,7 +7,7 @@ public class CoinIncreaseScore : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Score.Instance.UpdateScore();
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }
