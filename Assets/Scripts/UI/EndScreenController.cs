@@ -8,6 +8,18 @@ namespace Marvin.UI
         [Header("Navigation")]
         [SerializeField] private string homeSceneName = "Home";
 
+        [Header("High Score Display")]
+        [SerializeField] private HighScoreDisplay _highScoreDisplay;
+
+        private void Start()
+        {
+            // Ensure high score is displayed when the scene loads
+            if (_highScoreDisplay != null)
+            {
+                _highScoreDisplay.RefreshDisplay();
+            }
+        }
+
         public void OnRetryClicked()
         {
             int activeIndex = SceneManager.GetActiveScene().buildIndex;

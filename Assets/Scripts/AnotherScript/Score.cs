@@ -9,6 +9,7 @@ public class Score : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -52,4 +53,56 @@ public class Score : MonoBehaviour
         _currentcoinText.text = _cnt.ToString();
         _highScore.text = _cnt.ToString();
     }
+
+    /// <summary>
+    /// Gets the current high score from PlayerPrefs
+    /// </summary>
+    public int GetHighScore()
+    {
+        return PlayerPrefs.GetInt("HighScore", 0);
+    }
+    
+    /// <summary>
+    /// Gets the current score count
+    /// </summary>
+    public int GetCurrentScore()
+    {
+        return _cnt;
+    }
+    
+    /// <summary>
+    /// Updates high score display for GameOverScene
+    /// </summary>
+    public void UpdateHighScoreDisplay()
+    {
+        int highScore = GetHighScore();
+        if (_highScore != null)
+        {
+            _highScore.text = highScore.ToString();
+        }
+    }
+    
+    /// <summary>
+    /// Sets the high score TextMeshProUGUI reference (for GameOverScene)
+    /// </summary>
+    public void SetHighScoreDisplay(TextMeshProUGUI highScoreText)
+    {
+        _highScore = highScoreText;
+        UpdateHighScoreDisplay();
+    }
+    
+    /// <summary>
+    /// Resets the current score (useful when starting a new game)
+    /// </summary>
+    public void ResetCurrentScore()
+    {
+        _cnt = 0;
+        if (_currentcoinText != null)
+        {
+            _currentcoinText.text = _cnt.ToString();
+        }
+    }
+
+
+    
 }
